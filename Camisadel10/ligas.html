@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ligas Europeas - Camisa del 10</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>Camisa del 10</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="ligas.html" class="active">Ligas</a></li>
+                    <li><a href="selecciones.html">Selecciones</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sección de Ligas -->
+    <section id="ligas" class="section-ligas page-section">
+        <div class="container">
+            <h2 class="section-title">Ligas Europeas</h2>
+            
+            <!-- Filtros -->
+            <div class="filters">
+                <button class="filter-btn active" data-league="all">Todas</button>
+                <button class="filter-btn" data-league="laliga">La Liga</button>
+                <button class="filter-btn" data-league="seriea">Serie A</button>
+                <button class="filter-btn" data-league="premier">Premier League</button>
+                <button class="filter-btn" data-league="bundesliga">Bundesliga</button>
+                <button class="filter-btn" data-league="ligue1">Ligue 1</button>
+            </div>
+
+            <!-- Grid de Camisetas -->
+            <div class="jerseys-grid">
+                <!-- La Liga -->
+                <div class="jersey-card" data-league="laliga">
+                    <div class="jersey-image">
+                        <img src="https://via.placeholder.com/300x350/d32f2f/ffffff?text=Real+Madrid" alt="Real Madrid">
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">La Liga</span>
+                        <h3>Real Madrid</h3>
+                        <p class="price">$79.99</p>
+                        <button class="order-btn" data-jersey="Real Madrid">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <div class="jersey-card" data-league="laliga">
+                    <div class="jersey-image">
+                        <img src="https://via.placeholder.com/300x350/d32f2f/ffffff?text=Barcelona" alt="Barcelona">
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">La Liga</span>
+                        <h3>Barcelona</h3>
+                        <p class="price">$79.99</p>
+                        <button class="order-btn" data-jersey="Barcelona">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <div class="jersey-card" data-league="laliga">
+                    <div class="jersey-image">
+                        <img src="https://via.placeholder.com/300x350/d32f2f/ffffff?text=Atletico+Madrid" alt="Atletico Madrid">
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">La Liga</span>
+                        <h3>Atletico Madrid</h3>
+                        <p class="price">$74.99</p>
+                        <button class="order-btn" data-jersey="Atletico Madrid">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- Serie A -->
+                <div class="jersey-card" data-league="seriea">
+                    <div class="jersey-image">
+                        <img src="https://via.placeholder.com/300x350/d32f2f/ffffff?text=Juventus" alt="Juventus">
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Serie A</span>
+                        <h3>Juventus</h3>
+                        <p class="price">$79.99</p>
+                        <button class="order-btn" data-jersey="Juventus">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <div class="jersey-card" data-league="seriea">
+                    <div class="jersey-image">
+                        <img src="https://via.placeholder.com/300x350/d32f2f/ffffff?text=AC+Milan" alt="AC Milan">
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Serie A</span>
+                        <h3>AC Milan</h3>
+                        <p class="price">$79.99</p>
+                        <button class="order-btn" data-jersey="AC Milan">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <div class="jersey-card" data-league="seriea">
+                    <div class="jersey-image">
+                        <img src="https://via.placeholder.com/300x350/d32f2f/ffffff?text=Inter+Milan" alt="Inter Milan">
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Serie A</span>
+                        <h3>Inter Milan</h3>
+                        <p class="price">$79.99</p>
+                        <button class="order-btn" data-jersey="Inter Milan">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- Premier League -->
+                <div class="jersey-card" data-league="premier">
+                    <div class="jersey-image">
+                        <img src="https://via.placeholder.com/300x350/d32f2f/ffffff?text=Manchester+United" alt="Manchester United">
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Premier League</span>
+                        <h3>Manchester United</h3>
+                        <p class="price">$84.99</p>
+                        <button class="order-btn" data-jersey="Manchester United">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <div class="jersey-card" data-league="premier">
+                    <div class="jersey-image">
+                        <img src="https://via.placeholder.com/300x350/d32f2f/ffffff?text=Liverpool" alt="Liverpool">
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Premier League</span>
+                        <h3>Liverpool</h3>
+                        <p class="price">$84.99</p>
+                        <button class="order-btn" data-jersey="Liverpool">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <div class="jersey-card" data-league="premier">
+                    <div class="jersey-image">
+                        <img src="https://via.placeholder.com/300x350/d32f2f/ffffff?text=Chelsea" alt="Chelsea">
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Premier League</span>
+                        <h3>Chelsea</h3>
+                        <p class="price">$84.99</p>
+                        <button class="order-btn" data-jersey="Chelsea">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <div class="jersey-card" data-league="premier">
+                    <div class="jersey-image">
+                        <img src="https://via.placeholder.com/300x350/d32f2f/ffffff?text=Arsenal" alt="Arsenal">
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Premier League</span>
+                        <h3>Arsenal</h3>
+                        <p class="price">$84.99</p>
+                        <button class="order-btn" data-jersey="Arsenal">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- Bundesliga -->
+                <div class="jersey-card" data-league="bundesliga">
+                    <div class="jersey-image">
+                        <img src="https://via.placeholder.com/300x350/d32f2f/ffffff?text=Bayern+Munich" alt="Bayern Munich">
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Bundesliga</span>
+                        <h3>Bayern Munich</h3>
+                        <p class="price">$79.99</p>
+                        <button class="order-btn" data-jersey="Bayern Munich">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <div class="jersey-card" data-league="bundesliga">
+                    <div class="jersey-image">
+                        <img src="https://via.placeholder.com/300x350/d32f2f/ffffff?text=Borussia+Dortmund" alt="Borussia Dortmund">
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Bundesliga</span>
+                        <h3>Borussia Dortmund</h3>
+                        <p class="price">$79.99</p>
+                        <button class="order-btn" data-jersey="Borussia Dortmund">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <div class="jersey-card" data-league="bundesliga">
+                    <div class="jersey-image">
+                        <img src="https://via.placeholder.com/300x350/d32f2f/ffffff?text=RB+Leipzig" alt="RB Leipzig">
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Bundesliga</span>
+                        <h3>RB Leipzig</h3>
+                        <p class="price">$74.99</p>
+                        <button class="order-btn" data-jersey="RB Leipzig">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- Ligue 1 -->
+                <div class="jersey-card" data-league="ligue1">
+                    <div class="jersey-image">
+                        <img src="https://via.placeholder.com/300x350/d32f2f/ffffff?text=PSG" alt="PSG">
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Ligue 1</span>
+                        <h3>Paris Saint-Germain</h3>
+                        <p class="price">$84.99</p>
+                        <button class="order-btn" data-jersey="Paris Saint-Germain">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <div class="jersey-card" data-league="ligue1">
+                    <div class="jersey-image">
+                        <img src="https://via.placeholder.com/300x350/d32f2f/ffffff?text=Marseille" alt="Marseille">
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Ligue 1</span>
+                        <h3>Marseille</h3>
+                        <p class="price">$74.99</p>
+                        <button class="order-btn" data-jersey="Marseille">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <div class="jersey-card" data-league="ligue1">
+                    <div class="jersey-image">
+                        <img src="https://via.placeholder.com/300x350/d32f2f/ffffff?text=Lyon" alt="Lyon">
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Ligue 1</span>
+                        <h3>Lyon</h3>
+                        <p class="price">$74.99</p>
+                        <button class="order-btn" data-jersey="Lyon">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Camisa del 10</h3>
+                    <p>Tu tienda de confianza para camisetas de fútbol auténticas.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="ligas.html">Ligas</a></li>
+                        <li><a href="selecciones.html">Selecciones</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Camisa del 10. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
