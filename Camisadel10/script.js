@@ -1,14 +1,19 @@
 // Variables globales
 let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel-slide');
-const totalSlides = slides.length;
+let slides = [];
+let totalSlides = 0;
 
 // Tu número de WhatsApp (cambiar por tu número real)
-const WHATSAPP_NUMBER = '63620357'; 
+const WHATSAPP_NUMBER = '50663620357'; 
 
 // Inicialización cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {
-    initCarousel();
+    slides = document.querySelectorAll('.carousel-slide');
+    totalSlides = slides.length;
+    
+    if (slides.length > 0) {
+        initCarousel();
+    }
     initFilters();
     initMobileMenu();
     initOrderButtons();
@@ -145,12 +150,13 @@ function initMobileMenu() {
 
 // ========== BOTONES DE ORDENAR ==========
 function initOrderButtons() {
-    const orderButtons = document.querySelectorAll('.order-btn');
-
-    orderButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const jerseyName = this.getAttribute('data-jersey');
-            const price = this.closest('.jersey-info').querySelector('.price').textContent;
+    // Usar evento de delegación para asegurar que funcione con todos los botones
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('order-btn') || e.target.closest('.order-btn')) {
+            const button = e.target.classList.contains('order-btn') ? e.target : e.target.closest('.order-btn');
+            const jerseyName = button.getAttribute('data-jersey');
+            const jerseyInfo = button.closest('.jersey-info');
+            const price = jerseyInfo ? jerseyInfo.querySelector('.price').textContent : '$79.99';
             
             // Crear mensaje para WhatsApp
             const message = `¡Hola! Estoy interesado en ordenar la camiseta de *${jerseyName}* con precio de ${price}. ¿Está disponible?`;
@@ -163,7 +169,7 @@ function initOrderButtons() {
             
             // Abrir WhatsApp en nueva pestaña
             window.open(whatsappURL, '_blank');
-        });
+        }
     });
 }
 
@@ -176,22 +182,20 @@ function initContactForm() {
             e.preventDefault();
 
             // Obtener valores del formulario
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const message = document.getElementById('message').value;
+            const name = document.getElementById('name') ? document.getElementById('name').value : '';
+            const email = document.getElementById('email') ? document.getElementById('email').value : '';
+            const phone = document.getElementById('phone') ? document.getElementById('phone').value : '';
+            const message = document.getElementById('message') ? document.getElementById('message').value : '';
 
             // Crear mensaje para WhatsApp
-            const whatsappMessage = `
-*Nuevo mensaje de contacto*
+            const whatsappMessage = `*Nuevo mensaje de contacto*
 
 *Nombre:* ${name}
 *Email:* ${email}
 *Teléfono:* ${phone}
 
 *Mensaje:*
-${message}
-            `.trim();
+${message}`;
 
             // Codificar el mensaje para URL
             const encodedMessage = encodeURIComponent(whatsappMessage);
@@ -256,26 +260,74 @@ document.querySelectorAll('.jersey-card').forEach(card => {
 let lastScroll = 0;
 const header = document.querySelector('header');
 
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
+if (header) {
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
 
-    if (currentScroll <= 0) {
-        header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-    } else {
-        header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
-    }
+        if (currentScroll <= 0) {
+            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        } else {
+            header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
+        }
 
-    lastScroll = currentScroll;
-});
+        lastScroll = currentScroll;
+    });
+}
 
 // ========== BOTONES DE VISTA RÁPIDA ==========
-document.querySelectorAll('.quick-view-btn').forEach(button => {
-    button.addEventListener('click', function(e) {
+// Usar delegación de eventos para los botones de vista rápida
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('quick-view-btn') || e.target.closest('.quick-view-btn')) {
         e.stopPropagation();
-        const card = this.closest('.jersey-card');
-        const jerseyName = card.querySelector('h3').textContent;
-        const price = card.querySelector('.price').textContent;
+        const button = e.target.classList.contains('quick-view-btn') ? e.target : e.target.closest('.quick-view-btn');
+        const card = button.closest('.jersey-card');
         
-        alert(`${jerseyName}\nPrecio: ${price}\n\n¡Haz clic en "Ordenar" para comprar por WhatsApp!`);
-    });
+        if (card) {
+            const jerseyName = card.querySelector('h3') ? card.querySelector('h3').textContent : 'Camiseta';
+            const price = card.querySelector('.price') ? card.querySelector('.price').textContent : '$79.99';
+            const img = card.querySelector('.jersey-image img');
+            const imgSrc = img ? img.src : '';
+            const imgAlt = img ? img.alt : jerseyName;
+            
+            // Actualizar el modal con la información
+            document.getElementById('jerseyModalLabel').textContent = jerseyName;
+            document.getElementById('modalJerseyName').textContent = jerseyName;
+            document.getElementById('modalJerseyPrice').textContent = price;
+            document.getElementById('modalJerseyImage').src = imgSrc;
+            document.getElementById('modalJerseyImage').alt = imgAlt;
+            
+            // Configurar el botón de ordenar del modal
+            const modalOrderBtn = document.getElementById('modalOrderBtn');
+            if (modalOrderBtn) {
+                // Remover eventos anteriores
+                const newBtn = modalOrderBtn.cloneNode(true);
+                modalOrderBtn.parentNode.replaceChild(newBtn, modalOrderBtn);
+                
+                // Agregar nuevo evento
+                document.getElementById('modalOrderBtn').addEventListener('click', function() {
+                    const message = `¡Hola! Estoy interesado en ordenar la camiseta de *${jerseyName}* con precio de ${price}. ¿Está disponible?`;
+                    const encodedMessage = encodeURIComponent(message);
+                    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+                    window.open(whatsappURL, '_blank');
+                });
+            }
+            
+            // Mostrar el modal
+            const modal = new bootstrap.Modal(document.getElementById('jerseyModal'));
+            modal.show();
+        }
+    }
 });
+
+// ========== VERIFICACIÓN Y FALLBACK PARA WHATSAPP ==========
+// Agregar manejador global como fallback
+window.orderWhatsApp = function(jerseyName, price) {
+    const message = `¡Hola! Estoy interesado en ordenar la camiseta de *${jerseyName}* con precio de ${price}. ¿Está disponible?`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+    window.open(whatsappURL, '_blank');
+};
+
+// Log para verificar que el script se cargó
+console.log('Script cargado - WhatsApp Number:', WHATSAPP_NUMBER);
+console.log('Botones de ordenar encontrados:', document.querySelectorAll('.order-btn').length);

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selecciones Nacionales - Camisa del 10</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -18,6 +19,7 @@
                 <ul class="nav-menu">
                     <li><a href="index.html">Inicio</a></li>
                     <li><a href="ligas.html">Ligas</a></li>
+                    <li><a href="retro.html">Retro</a></li>
                     <li><a href="selecciones.html" class="active">Selecciones</a></li>
                     <li><a href="contacto.html">Contacto</a></li>
                 </ul>
@@ -231,6 +233,7 @@
                     <ul>
                         <li><a href="index.html">Inicio</a></li>
                         <li><a href="ligas.html">Ligas</a></li>
+                        <li><a href="retro.html">Retro</a></li>
                         <li><a href="selecciones.html">Selecciones</a></li>
                         <li><a href="contacto.html">Contacto</a></li>
                     </ul>
@@ -250,6 +253,51 @@
         </div>
     </footer>
 
+    <!-- Modal de Detalles de Camiseta -->
+    <div class="modal fade" id="jerseyModal" tabindex="-1" aria-labelledby="jerseyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%); color: white; border: none;">
+                    <h5 class="modal-title" id="jerseyModalLabel" style="font-weight: bold;"></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <img id="modalJerseyImage" src="" alt="" class="img-fluid rounded shadow" style="max-height: 400px; object-fit: contain;">
+                        </div>
+                        <div class="col-md-6">
+                            <h4 id="modalJerseyName" class="mb-3" style="color: #d32f2f; font-weight: bold;"></h4>
+                            <div class="mb-4">
+                                <h3 id="modalJerseyPrice" class="text-success fw-bold"></h3>
+                            </div>
+                            <div class="mb-4">
+                                <h6 class="fw-bold mb-2"><i class="fas fa-ruler-combined me-2"></i>Tallas Disponibles:</h6>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <span class="badge bg-secondary" style="font-size: 1rem; padding: 0.5rem 1rem;">S</span>
+                                    <span class="badge bg-secondary" style="font-size: 1rem; padding: 0.5rem 1rem;">M</span>
+                                    <span class="badge bg-secondary" style="font-size: 1rem; padding: 0.5rem 1rem;">L</span>
+                                    <span class="badge bg-secondary" style="font-size: 1rem; padding: 0.5rem 1rem;">XL</span>
+                                </div>
+                            </div>
+                            <div class="alert alert-info" role="alert">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <strong>Nota:</strong> Productos de alta calidad. Envíos a todo el país.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="border-top: 2px solid #f5f5f5;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" id="modalOrderBtn" style="background-color: #25D366; border: none;">
+                        <i class="fab fa-whatsapp me-2"></i>Ordenar por WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
