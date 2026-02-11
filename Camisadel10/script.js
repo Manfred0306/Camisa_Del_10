@@ -303,6 +303,7 @@ function initJerseyCarousels() {
         if (images.length <= 1) return; // Solo si hay múltiples imágenes
         
         let currentIndex = 0;
+        let autoSlideInterval;
         const prevBtn = card.querySelector('.jersey-carousel-btn.prev-jersey');
         const nextBtn = card.querySelector('.jersey-carousel-btn.next-jersey');
         const indicatorsContainer = card.querySelector('.jersey-carousel-indicators');
@@ -312,7 +313,10 @@ function initJerseyCarousels() {
             const indicator = document.createElement('span');
             indicator.classList.add('jersey-indicator');
             if (index === 0) indicator.classList.add('active');
-            indicator.addEventListener('click', () => goToJerseySlide(card, index));
+            indicator.addEventListener('click', () => {
+                goToJerseySlide(card, index);
+                resetAutoSlide();
+            });
             indicatorsContainer.appendChild(indicator);
         });
         
@@ -330,12 +334,37 @@ function initJerseyCarousels() {
             });
         }
         
+        // Función para avanzar automáticamente
+        function nextSlideAuto() {
+            currentIndex = (currentIndex + 1) % images.length;
+            goToJerseySlide(card, currentIndex);
+        }
+        
+        // Iniciar auto-slide
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlideAuto, 5000); // 5 segundos
+        }
+        
+        // Detener auto-slide
+        function stopAutoSlide() {
+            if (autoSlideInterval) {
+                clearInterval(autoSlideInterval);
+            }
+        }
+        
+        // Reiniciar auto-slide
+        function resetAutoSlide() {
+            stopAutoSlide();
+            startAutoSlide();
+        }
+        
         // Botón anterior
         if (prevBtn) {
             prevBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 currentIndex = (currentIndex - 1 + images.length) % images.length;
                 goToJerseySlide(card, currentIndex);
+                resetAutoSlide();
             });
         }
         
@@ -345,8 +374,16 @@ function initJerseyCarousels() {
                 e.stopPropagation();
                 currentIndex = (currentIndex + 1) % images.length;
                 goToJerseySlide(card, currentIndex);
+                resetAutoSlide();
             });
         }
+        
+        // Pausar auto-slide al pasar el mouse
+        card.addEventListener('mouseenter', stopAutoSlide);
+        card.addEventListener('mouseleave', startAutoSlide);
+        
+        // Iniciar auto-slide al cargar
+        startAutoSlide();
     });
 }
 
