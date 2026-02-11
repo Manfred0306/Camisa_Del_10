@@ -940,3 +940,107 @@ html {
     transform: scale(1.1);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* Carrusel en tarjetas de camisetas */
+.jersey-image-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.jersey-carousel-images {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+    height: 100%;
+}
+
+.jersey-carousel-images img {
+    min-width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.jersey-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(15, 76, 117, 0.8);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 0.7rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    z-index: 5;
+    opacity: 0;
+}
+
+.jersey-card:hover .jersey-carousel-btn {
+    opacity: 1;
+}
+
+.jersey-carousel-btn:hover {
+    background-color: var(--red-dark);
+}
+
+.jersey-carousel-btn.prev-jersey {
+    left: 5px;
+}
+
+.jersey-carousel-btn.next-jersey {
+    right: 5px;
+}
+
+.jersey-carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    z-index: 5;
+}
+
+.jersey-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.jersey-indicator.active {
+    background-color: var(--white);
+    transform: scale(1.2);
+}
+
+/* Galería del modal */
+.modal-gallery {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.modal-gallery img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.modal-gallery img:hover {
+    border-color: var(--red);
+    transform: scale(1.05);
+}
+
+.modal-gallery img.active {
+    border-color: var(--red);
+    box-shadow: 0 0 10px rgba(15, 76, 117, 0.5);
+}

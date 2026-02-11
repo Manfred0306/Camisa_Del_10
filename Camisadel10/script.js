@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initMobileMenu();
     initOrderButtons();
     initContactForm();
+    initJerseyCarousels();
 });
 
 // ========== CARRUSEL ==========
@@ -275,7 +276,81 @@ if (header) {
 }
 
 // ========== BOTONES DE VISTA RÁPIDA ==========
-// Usar delegación de eventos para los botones de vista rápida
+// Este código ahora está integrado con la galería en el código anterior
+
+// ========== VERIFICACIÓN Y FALLBACK PARA WHATSAPP ==========
+// Agregar manejador global como fallback
+window.orderWhatsApp = function(jerseyName, price) {
+    const message = `¡Hola! Estoy interesado en ordenar la camiseta de *${jerseyName}* con precio de ${price}. ¿Está disponible?`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+    window.open(whatsappURL, '_blank');
+};
+
+// Log para verificar que el script se cargó
+console.log('Script cargado - WhatsApp Number:', WHATSAPP_NUMBER);
+console.log('Botones de ordenar encontrados:', document.querySelectorAll('.order-btn').length);
+
+// ========== CARRUSELES DE IMÁGENES EN TARJETAS ==========
+function initJerseyCarousels() {
+    const jerseyCards = document.querySelectorAll('.jersey-card');
+    
+    jerseyCards.forEach(card => {
+        const carouselContainer = card.querySelector('.jersey-carousel-images');
+        if (!carouselContainer) return;
+        
+        const images = carouselContainer.querySelectorAll('img');
+        if (images.length <= 1) return; // Solo si hay múltiples imágenes
+        
+        let currentIndex = 0;
+        const prevBtn = card.querySelector('.jersey-carousel-btn.prev-jersey');
+        const nextBtn = card.querySelector('.jersey-carousel-btn.next-jersey');
+        const indicatorsContainer = card.querySelector('.jersey-carousel-indicators');
+        
+        // Crear indicadores
+        images.forEach((_, index) => {
+            const indicator = document.createElement('span');
+            indicator.classList.add('jersey-indicator');
+            if (index === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToJerseySlide(card, index));
+            indicatorsContainer.appendChild(indicator);
+        });
+        
+        // Función para mostrar slide específico
+        function goToJerseySlide(cardElem, index) {
+            const container = cardElem.querySelector('.jersey-carousel-images');
+            const indicators = cardElem.querySelectorAll('.jersey-indicator');
+            const imgs = container.querySelectorAll('img');
+            
+            currentIndex = index;
+            container.style.transform = `translateX(-${currentIndex * 100}%)`;
+            
+            indicators.forEach((ind, i) => {
+                ind.classList.toggle('active', i === currentIndex);
+            });
+        }
+        
+        // Botón anterior
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                goToJerseySlide(card, currentIndex);
+            });
+        }
+        
+        // Botón siguiente
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentIndex = (currentIndex + 1) % images.length;
+                goToJerseySlide(card, currentIndex);
+            });
+        }
+    });
+}
+
+// ========== GALERÍA EN MODAL ==========
 document.addEventListener('click', function(e) {
     if (e.target.classList.contains('quick-view-btn') || e.target.closest('.quick-view-btn')) {
         e.stopPropagation();
@@ -285,9 +360,20 @@ document.addEventListener('click', function(e) {
         if (card) {
             const jerseyName = card.querySelector('h3') ? card.querySelector('h3').textContent : 'Camiseta';
             const price = card.querySelector('.price') ? card.querySelector('.price').textContent : '$79.99';
-            const img = card.querySelector('.jersey-image img');
-            const imgSrc = img ? img.src : '';
-            const imgAlt = img ? img.alt : jerseyName;
+            
+            // Obtener todas las imágenes del carrusel o solo la imagen principal
+            const carouselImages = card.querySelectorAll('.jersey-carousel-images img');
+            const singleImage = card.querySelector('.jersey-image img:not(.jersey-carousel-images img)');
+            
+            let imageSources = [];
+            if (carouselImages.length > 0) {
+                imageSources = Array.from(carouselImages).map(img => img.src);
+            } else if (singleImage) {
+                imageSources = [singleImage.src];
+            }
+            
+            const imgSrc = imageSources[0] || '';
+            const imgAlt = jerseyName;
             
             // Actualizar el modal con la información
             document.getElementById('jerseyModalLabel').textContent = jerseyName;
@@ -295,6 +381,30 @@ document.addEventListener('click', function(e) {
             document.getElementById('modalJerseyPrice').textContent = price;
             document.getElementById('modalJerseyImage').src = imgSrc;
             document.getElementById('modalJerseyImage').alt = imgAlt;
+            
+            // Crear galería de miniaturas si hay múltiples imágenes
+            const galleryContainer = document.getElementById('modalGallery');
+            if (galleryContainer && imageSources.length > 1) {
+                galleryContainer.innerHTML = '';
+                imageSources.forEach((src, index) => {
+                    const thumbnail = document.createElement('img');
+                    thumbnail.src = src;
+                    thumbnail.alt = `${jerseyName} ${index + 1}`;
+                    if (index === 0) thumbnail.classList.add('active');
+                    
+                    thumbnail.addEventListener('click', function() {
+                        document.getElementById('modalJerseyImage').src = src;
+                        galleryContainer.querySelectorAll('img').forEach(img => img.classList.remove('active'));
+                        this.classList.add('active');
+                    });
+                    
+                    galleryContainer.appendChild(thumbnail);
+                });
+                galleryContainer.style.display = 'flex';
+            } else if (galleryContainer) {
+                galleryContainer.innerHTML = '';
+                galleryContainer.style.display = 'none';
+            }
             
             // Configurar el botón de ordenar del modal
             const modalOrderBtn = document.getElementById('modalOrderBtn');
@@ -318,16 +428,3 @@ document.addEventListener('click', function(e) {
         }
     }
 });
-
-// ========== VERIFICACIÓN Y FALLBACK PARA WHATSAPP ==========
-// Agregar manejador global como fallback
-window.orderWhatsApp = function(jerseyName, price) {
-    const message = `¡Hola! Estoy interesado en ordenar la camiseta de *${jerseyName}* con precio de ${price}. ¿Está disponible?`;
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-    window.open(whatsappURL, '_blank');
-};
-
-// Log para verificar que el script se cargó
-console.log('Script cargado - WhatsApp Number:', WHATSAPP_NUMBER);
-console.log('Botones de ordenar encontrados:', document.querySelectorAll('.order-btn').length);
