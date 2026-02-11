@@ -1,13 +1,13 @@
 /* Variables de Color */
 :root {
-    --beige: #f5deb3;
-    --beige-light: #faf0dc;
-    --beige-dark: #d4b896;
-    --red: #d32f2f;
-    --red-dark: #b71c1c;
-    --red-light: #ef5350;
-    --dark: #1a1a1a;
-    --gray: #666;
+    --beige: #e8f0f8;
+    --beige-light: #f0f7ff;
+    --beige-dark: #2c5282;
+    --red: #0f4c75;
+    --red-dark: #0a2540;
+    --red-light: #3b82f6;
+    --dark: #1a2744;
+    --gray: #5a6c7d;
     --white: #ffffff;
 }
 
@@ -138,7 +138,7 @@ header {
     transform: translateX(-50%);
     text-align: center;
     color: var(--white);
-    background-color: rgba(211, 47, 47, 0.9);
+    background-color: rgba(15, 76, 117, 0.95);
     padding: 1.5rem 2.5rem;
     border-radius: 10px;
     width: 80%;
@@ -158,7 +158,7 @@ header {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(211, 47, 47, 0.8);
+    background-color: rgba(15, 76, 117, 0.9);
     color: var(--white);
     border: none;
     padding: 1rem 1.5rem;
@@ -261,7 +261,7 @@ header {
 
 .category-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 25px rgba(211, 47, 47, 0.3);
+    box-shadow: 0 8px 25px rgba(15, 76, 117, 0.3);
 }
 
 .category-icon {
@@ -359,7 +359,7 @@ header {
     background-color: var(--red);
     color: var(--white);
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(211, 47, 47, 0.3);
+    box-shadow: 0 4px 10px rgba(15, 76, 117, 0.3);
 }
 
 /* Grid de Camisetas */
@@ -379,7 +379,7 @@ header {
 
 .jersey-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 25px rgba(211, 47, 47, 0.3);
+    box-shadow: 0 8px 25px rgba(15, 76, 117, 0.3);
 }
 
 .jersey-image {
@@ -405,7 +405,7 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(211, 47, 47, 0.9);
+    background-color: rgba(15, 76, 117, 0.95);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -481,7 +481,7 @@ header {
 .order-btn:hover {
     background-color: var(--red-dark);
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(211, 47, 47, 0.3);
+    box-shadow: 0 4px 10px rgba(15, 76, 117, 0.3);
 }
 
 .order-btn i {
@@ -588,7 +588,7 @@ header {
 .submit-btn:hover {
     background-color: var(--red-dark);
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(211, 47, 47, 0.3);
+    box-shadow: 0 4px 10px rgba(15, 76, 117, 0.3);
 }
 
 /* Footer */
