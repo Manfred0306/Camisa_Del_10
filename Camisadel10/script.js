@@ -77,7 +77,36 @@ function goToSlide(index) {
 // ========== FILTROS DE LIGAS ==========
 function initFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const jerseyCards = document.querySelectorAll('.jersey-card[data-league]');
+
+    if (filterButtons.length === 0) {
+        return;
+    }
+
+    function applyFilter(filterValue) {
+        const jerseyCards = document.querySelectorAll('.jersey-card[data-league]');
+
+        jerseyCards.forEach(card => {
+            if (filterValue === 'all') {
+                card.classList.remove('hidden');
+                setTimeout(() => {
+                    card.style.display = 'block';
+                }, 10);
+                return;
+            }
+
+            if (card.getAttribute('data-league') === filterValue) {
+                card.classList.remove('hidden');
+                setTimeout(() => {
+                    card.style.display = 'block';
+                }, 10);
+            } else {
+                card.classList.add('hidden');
+                setTimeout(() => {
+                    card.style.display = 'none';
+                }, 300);
+            }
+        });
+    }
 
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -88,29 +117,17 @@ function initFilters() {
 
             const filterValue = this.getAttribute('data-league');
 
-            // Filtrar tarjetas
-            jerseyCards.forEach(card => {
-                if (filterValue === 'all') {
-                    card.classList.remove('hidden');
-                    setTimeout(() => {
-                        card.style.display = 'block';
-                    }, 10);
-                } else {
-                    if (card.getAttribute('data-league') === filterValue) {
-                        card.classList.remove('hidden');
-                        setTimeout(() => {
-                            card.style.display = 'block';
-                        }, 10);
-                    } else {
-                        card.classList.add('hidden');
-                        setTimeout(() => {
-                            card.style.display = 'none';
-                        }, 300);
-                    }
-                }
-            });
+            // Filtrar tarjetas (incluye dinámicas cargadas después)
+            applyFilter(filterValue);
         });
     });
+
+    // Exponer para aplicar filtro activo luego de cargar dinámicas desde app.js
+    window.applyActiveLeagueFilter = function() {
+        const active = document.querySelector('.filter-btn.active');
+        const value = active ? active.getAttribute('data-league') : 'all';
+        applyFilter(value || 'all');
+    };
 }
 
 // ========== MENÚ MÓVIL ==========

@@ -1,0 +1,778 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ligas Europeas - Camisa del 10</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>Camisa del 10</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="ligas.html" class="active">Ligas</a></li>
+                    <li><a href="retro.html">Retro</a></li>
+                    <li><a href="selecciones.html">Selecciones</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Secci├│n de Ligas -->
+    <section id="ligas" class="section-ligas page-section">
+        <div class="container">
+            <h2 class="section-title">Ligas Europeas</h2>
+            
+            <!-- Filtros -->
+            <div class="filters">
+                <button class="filter-btn active" data-league="all">Todas</button>
+                <button class="filter-btn" data-league="laliga">La Liga</button>
+                <button class="filter-btn" data-league="seriea">Serie A</button>
+                <button class="filter-btn" data-league="premier">Premier League</button>
+                <button class="filter-btn" data-league="ligue1">Ligue 1</button>
+                <button class="filter-btn" data-league="bundesliga">Bundesliga</button>
+            </div>
+
+            <!-- Grid de Camisetas -->
+            <div class="jerseys-grid">
+                <!-- LA LIGA - Real Madrid -->
+                <div class="jersey-card" data-league="laliga">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/madrid/primera real madridplayer.webp" alt="Real Madrid">
+                                <img src="img/madrid/primera real madrid2 player.webp" alt="Real Madrid">
+                                <img src="img/madrid/camisa real madrid para la burbuja player.webp" alt="Real Madrid">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">La Liga</span>
+                        <h3>Real Madrid</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="Real Madrid">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- LA LIGA - Real Madrid Segunda -->
+                <div class="jersey-card" data-league="laliga">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/madrid/segunda real madrid player.webp" alt="Real Madrid Segunda">
+                                <img src="img/madrid/segunda real madrid2 player.webp" alt="Real Madrid Segunda">
+                                <img src="img/madrid/segunda real madrid 3 player.webp" alt="Real Madrid Segunda">
+                                <img src="img/madrid/segunda real madrid 4 payer.webp" alt="Real Madrid Segunda">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">La Liga</span>
+                        <h3>Real Madrid (Segunda)</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="Real Madrid Segunda">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- LA LIGA - Barcelona -->
+                <div class="jersey-card" data-league="laliga">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/barcelona/primera barca player.webp" alt="Barcelona">
+                                <img src="img/barcelona/primera barca2 player.webp" alt="Barcelona">
+                                <img src="img/barcelona/primera barca3 player.webp" alt="Barcelona">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">La Liga</span>
+                        <h3>Barcelona</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="Barcelona">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- LA LIGA - Barcelona Segunda -->
+                <div class="jersey-card" data-league="laliga">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/barcelona/barcelona segunda player.webp" alt="Barcelona Segunda">
+                                <img src="img/barcelona/barcelona segunda 2 player.webp" alt="Barcelona Segunda">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">La Liga</span>
+                        <h3>Barcelona (Segunda)</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="Barcelona Segunda">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- PREMIER LEAGUE - Arsenal Primera -->
+                <div class="jersey-card" data-league="premier">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/arsenal/primera arsenal player .webp" alt="Arsenal">
+                                <img src="img/arsenal/primera arsenal player 2.webp" alt="Arsenal">
+                                <img src="img/arsenal/primera arsenal player 3.webp" alt="Arsenal">
+                                <img src="img/arsenal/primera arsenal player 4webp.webp" alt="Arsenal">
+                                <img src="img/arsenal/primera arsenal player 5.webp" alt="Arsenal">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Premier League</span>
+                        <h3>Arsenal</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="Arsenal">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- PREMIER LEAGUE - Arsenal Segunda -->
+                <div class="jersey-card" data-league="premier">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/arsenal/segunda arsenal player .webp" alt="Arsenal Segunda">
+                                <img src="img/arsenal/segunda arsenal player 2.webp" alt="Arsenal Segunda">
+                                <img src="img/arsenal/segunda arsenal player 3.webp" alt="Arsenal Segunda">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Premier League</span>
+                        <h3>Arsenal (Segunda)</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="Arsenal Segunda">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- PREMIER LEAGUE - Chelsea Primera Player -->
+                <div class="jersey-card" data-league="premier">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/chelsea/primera chealsea player .webp" alt="Chelsea">
+                                <img src="img/chelsea/primera chealsea player 2.webp" alt="Chelsea">
+                                <img src="img/chelsea/primera chealsea player 3.webp" alt="Chelsea">
+                                <img src="img/chelsea/primera chealsea player 4.webp" alt="Chelsea">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Premier League</span>
+                        <h3>Chelsea</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="Chelsea">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- PREMIER LEAGUE - Chelsea Primera Fan -->
+                <div class="jersey-card" data-league="premier">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/chelsea/primera chealsea fan .webp" alt="Chelsea Fan">
+                                <img src="img/chelsea/primera chealsea fan 2.webp" alt="Chelsea Fan">
+                                <img src="img/chelsea/primera chealsea fan 3.webp" alt="Chelsea Fan">
+                                <img src="img/chelsea/primera chealsea fan 4.webp" alt="Chelsea Fan">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Premier League</span>
+                        <h3>Chelsea (Versi├│n Fan)</h3>
+                        <p class="price">Γéí13.900</p>
+                        <button class="order-btn" data-jersey="Chelsea Fan">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- PREMIER LEAGUE - Chelsea Segunda -->
+                <div class="jersey-card" data-league="premier">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/chelsea/segunda chealsea fan.webp" alt="Chelsea Segunda">
+                                <img src="img/chelsea/segunda chealsea fan 2.jpg" alt="Chelsea Segunda">
+                                <img src="img/chelsea/segunda chealsea fan3.webp" alt="Chelsea Segunda">
+                                <img src="img/chelsea/segunda chealsea fan4.webp" alt="Chelsea Segunda">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Premier League</span>
+                        <h3>Chelsea (Segunda)</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="Chelsea Segunda">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- PREMIER LEAGUE - Liverpool Primera -->
+                <div class="jersey-card" data-league="premier">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/liverpool/primera liverpool player .webp" alt="Liverpool">
+                                <img src="img/liverpool/primera liverpool player 2 .webp" alt="Liverpool">
+                                <img src="img/liverpool/primera liverpool player 3.webp" alt="Liverpool">
+                                <img src="img/liverpool/primera liverpool player 4.webp" alt="Liverpool">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Premier League</span>
+                        <h3>Liverpool</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="Liverpool">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- PREMIER LEAGUE - Liverpool Segunda -->
+                <div class="jersey-card" data-league="premier">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/liverpool/segunda liverpool player.webp" alt="Liverpool Segunda">
+                                <img src="img/liverpool/segunda liverpool player 2.webp" alt="Liverpool Segunda">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Premier League</span>
+                        <h3>Liverpool (Segunda)</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="Liverpool Segunda">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- PREMIER LEAGUE - Manchester City Primera Player -->
+                <div class="jersey-card" data-league="premier">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/city/manchester city primera player.webp" alt="Manchester City">
+                                <img src="img/city/manchester city primera player 2.webp" alt="Manchester City">
+                                <img src="img/city/manchester city primera player 3.webp" alt="Manchester City">
+                                <img src="img/city/manchester city primera player 4.webp" alt="Manchester City">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Premier League</span>
+                        <h3>Manchester City</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="Manchester City">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- PREMIER LEAGUE - Manchester City Primera Fan -->
+                <div class="jersey-card" data-league="premier">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/city/manchester city primera fan.webp" alt="Manchester City Fan">
+                                <img src="img/city/manchester city primera fan 2.webp" alt="Manchester City Fan">
+                                <img src="img/city/manchester city primera fan 3.webp" alt="Manchester City Fan">
+                                <img src="img/city/manchester city primera fan4.webp" alt="Manchester City Fan">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Premier League</span>
+                        <h3>Manchester City (Versi├│n Fan)</h3>
+                        <p class="price">Γéí13.900</p>
+                        <button class="order-btn" data-jersey="Manchester City Fan">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- PREMIER LEAGUE - Manchester United Primera -->
+                <div class="jersey-card" data-league="premier">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/united/united primera player.webp" alt="Manchester United">
+                                <img src="img/united/united primera player2.webp" alt="Manchester United">
+                                <img src="img/united/united primera player3.webp" alt="Manchester United">
+                                <img src="img/united/united primera player.4.webp" alt="Manchester United">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Premier League</span>
+                        <h3>Manchester United</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="Manchester United">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- PREMIER LEAGUE - Manchester United Segunda Player -->
+                <div class="jersey-card" data-league="premier">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/united/united segunda player.webp" alt="Manchester United Segunda">
+                                <img src="img/united/united segunda player 2.webp" alt="Manchester United Segunda">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Premier League</span>
+                        <h3>Manchester United (Segunda)</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="Manchester United Segunda">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- PREMIER LEAGUE - Manchester United Segunda Fan -->
+                <div class="jersey-card" data-league="premier">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/united/united segunda fan.webp" alt="Manchester United Segunda Fan">
+                                <img src="img/united/united segunda fan3.webp" alt="Manchester United Segunda Fan">
+                                <img src="img/united/united segunda fan4webp.webp" alt="Manchester United Segunda Fan">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Premier League</span>
+                        <h3>Manchester United Segunda (Fan)</h3>
+                        <p class="price">Γéí13.900</p>
+                        <button class="order-btn" data-jersey="Manchester United Segunda Fan">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- SERIE A - Inter Primera -->
+                <div class="jersey-card" data-league="seriea">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/inter/primera inter player.webp" alt="Inter Milan">
+                                <img src="img/inter/primera inter player 2.webp" alt="Inter Milan">
+                                <img src="img/inter/primera inter player 3.webp" alt="Inter Milan">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Serie A</span>
+                        <h3>Inter Milan</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="Inter Milan">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- SERIE A - Inter Segunda -->
+                <div class="jersey-card" data-league="seriea">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/inter/segunda inter player .webp" alt="Inter Milan Segunda">
+                                <img src="img/inter/segunda inter player 2.webp" alt="Inter Milan Segunda">
+                                <img src="img/inter/segunda inter player 3.webp" alt="Inter Milan Segunda">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Serie A</span>
+                        <h3>Inter Milan (Segunda)</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="Inter Milan Segunda">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- SERIE A - Juventus Primera Player -->
+                <div class="jersey-card" data-league="seriea">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/juventus/primera juventus player.webp" alt="Juventus">
+                                <img src="img/juventus/primera juventus player 2.webp" alt="Juventus">
+                                <img src="img/juventus/primera juventus player 3.webp" alt="Juventus">
+                                <img src="img/juventus/primera juventus player 4.webp" alt="Juventus">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Serie A</span>
+                        <h3>Juventus</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="Juventus">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- SERIE A - Juventus Primera Fan -->
+                <div class="jersey-card" data-league="seriea">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/juventus/primera juventus fan.webp" alt="Juventus Fan">
+                                <img src="img/juventus/primera juventus fan 2.webp" alt="Juventus Fan">
+                                <img src="img/juventus/primera juventus fan 3.webp" alt="Juventus Fan">
+                                <img src="img/juventus/primera juventus fan 4.webp" alt="Juventus Fan">
+                                <img src="img/juventus/primera juventus fan 5.webp" alt="Juventus Fan">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Serie A</span>
+                        <h3>Juventus (Versi├│n Fan)</h3>
+                        <p class="price">Γéí13.900</p>
+                        <button class="order-btn" data-jersey="Juventus Fan">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- SERIE A - Juventus Segunda -->
+                <div class="jersey-card" data-league="seriea">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/juventus/segunda juventus player.webp" alt="Juventus Segunda">
+                                <img src="img/juventus/segunda juventus player 2.webp" alt="Juventus Segunda">
+                                <img src="img/juventus/segunda juventus player 3.webp" alt="Juventus Segunda">
+                                <img src="img/juventus/segunda juventus player 4.webp" alt="Juventus Segunda">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Serie A</span>
+                        <h3>Juventus (Segunda)</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="Juventus Segunda">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- SERIE A - Milan Primera Fan -->
+                <div class="jersey-card" data-league="seriea">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/milan/primera milan fan .webp" alt="AC Milan">
+                                <img src="img/milan/primera milan fan 2.webp" alt="AC Milan">
+                                <img src="img/milan/primera milan fan3 .jpg" alt="AC Milan">
+                                <img src="img/milan/primera milan fan 4.jpg" alt="AC Milan">
+                                <img src="img/milan/primera milan fan 5.jpg" alt="AC Milan">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Serie A</span>
+                        <h3>AC Milan</h3>
+                        <p class="price">Γéí13.900</p>
+                        <button class="order-btn" data-jersey="AC Milan">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- SERIE A - Milan Segunda -->
+                <div class="jersey-card" data-league="seriea">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/milan/segunda milan fan .webp" alt="AC Milan Segunda">
+                                <img src="img/milan/segunda milan fan 2.webp" alt="AC Milan Segunda">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Serie A</span>
+                        <h3>AC Milan (Segunda)</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="AC Milan Segunda">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- LIGUE 1 - PSG Primera -->
+                <div class="jersey-card" data-league="ligue1">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/psg/primera paris player..webp" alt="PSG">
+                                <img src="img/psg/primera paris player2.webp" alt="PSG">
+                                <img src="img/psg/primera paris player 3.webp" alt="PSG">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Ligue 1</span>
+                        <h3>Paris Saint-Germain</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="PSG">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+                <!-- LIGUE 1 - PSG Segunda -->
+                <div class="jersey-card" data-league="ligue1">
+                    <div class="jersey-image">
+                        <div class="jersey-image-carousel">
+                            <div class="jersey-carousel-images">
+                                <img src="img/psg/segunda paris player.webp" alt="PSG Segunda">
+                                <img src="img/psg/segunda paris player2.webp" alt="PSG Segunda">
+                                <img src="img/psg/segunda paris player. 3.webp" alt="PSG Segunda">
+                            </div>
+                            <button class="jersey-carousel-btn prev-jersey"><i class="fas fa-chevron-left"></i></button>
+                            <button class="jersey-carousel-btn next-jersey"><i class="fas fa-chevron-right"></i></button>
+                            <div class="jersey-carousel-indicators"></div>
+                        </div>
+                        <div class="jersey-overlay">
+                            <button class="quick-view-btn">Ver Detalles</button>
+                        </div>
+                    </div>
+                    <div class="jersey-info">
+                        <span class="league-badge">Ligue 1</span>
+                        <h3>Paris Saint-Germain (Segunda)</h3>
+                        <p class="price">Γéí18.900</p>
+                        <button class="order-btn" data-jersey="PSG Segunda">Ordenar <i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Camisa del 10</h3>
+                    <p>Tu tienda de confianza para camisetas de f├║tbol aut├⌐nticas.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces R├ípidos</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="ligas.html">Ligas</a></li>
+                        <li><a href="retro.html">Retro</a></li>
+                        <li><a href="selecciones.html">Selecciones</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>S├¡guenos</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Camisa del 10. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Detalles de Camiseta -->
+    <div class="modal fade" id="jerseyModal" tabindex="-1" aria-labelledby="jerseyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background: linear-gradient(135deg, #0f4c75 0%, #0a2540 100%); color: white; border: none;">
+                    <h5 class="modal-title" id="jerseyModalLabel" style="font-weight: bold;"></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <img id="modalJerseyImage" src="" alt="" class="img-fluid rounded shadow mb-3" style="max-height: 400px; object-fit: contain;">
+                            <div id="modalGallery" class="modal-gallery"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 id="modalJerseyName" class="mb-3" style="color: #0f4c75; font-weight: bold;"></h4>
+                            <div class="mb-4">
+                                <h3 id="modalJerseyPrice" class="text-success fw-bold"></h3>
+                            </div>
+                            <div class="mb-4">
+                                <h6 class="fw-bold mb-2"><i class="fas fa-ruler-combined me-2"></i>Tallas Disponibles:</h6>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <span class="badge bg-secondary" style="font-size: 1rem; padding: 0.5rem 1rem;">S</span>
+                                    <span class="badge bg-secondary" style="font-size: 1rem; padding: 0.5rem 1rem;">M</span>
+                                    <span class="badge bg-secondary" style="font-size: 1rem; padding: 0.5rem 1rem;">L</span>
+                                    <span class="badge bg-secondary" style="font-size: 1rem; padding: 0.5rem 1rem;">XL</span>
+                                </div>
+                            </div>
+                            <div class="alert alert-info" role="alert">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <strong>Nota:</strong> Productos de alta calidad. Env├¡os a todo el pa├¡s.
+                            </div>
+                            <div class="alert alert-warning" role="alert">
+                                <i class="fas fa-plus-circle me-2"></i>
+                                <strong>Manga Larga:</strong> +Γéí2.000 extra
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="border-top: 2px solid #f5f5f5;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" id="modalOrderBtn" style="background-color: #25D366; border: none;">
+                        <i class="fab fa-whatsapp me-2"></i>Ordenar por WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
