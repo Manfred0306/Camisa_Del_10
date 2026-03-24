@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     initFilters();
     initMobileMenu();
-    initOrderButtons();
+    // initOrderButtons(); // Deshabilitado: app.js maneja botones dinámicos
     initContactForm();
     initJerseyCarousels();
 });
