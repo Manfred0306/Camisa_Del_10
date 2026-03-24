@@ -16,6 +16,36 @@
     }
 
     const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const PUBLIC_SITE_URL = 'https://www.lacamisadel10.com';
+
+    function toShareableImageUrl(rawUrl) {
+        if (!rawUrl || typeof rawUrl !== 'string') return '';
+
+        try {
+            const url = new URL(rawUrl, window.location.href);
+            const pathname = url.pathname || '';
+            const imgIndex = pathname.toLowerCase().indexOf('/img/');
+
+            if (url.protocol === 'https:' || url.protocol === 'http:') {
+                const isLocalHost = url.hostname === 'localhost' || url.hostname === '127.0.0.1';
+                if (isLocalHost && imgIndex !== -1) {
+                    return `${PUBLIC_SITE_URL}${pathname.slice(imgIndex)}`;
+                }
+                return url.href;
+            }
+
+            if (url.protocol === 'file:' && imgIndex !== -1) {
+                return `${PUBLIC_SITE_URL}${pathname.slice(imgIndex)}`;
+            }
+        } catch (error) {
+            if (rawUrl.startsWith('img/') || rawUrl.startsWith('/img/')) {
+                const normalized = rawUrl.startsWith('/') ? rawUrl : `/${rawUrl}`;
+                return `${PUBLIC_SITE_URL}${normalized}`;
+            }
+        }
+
+        return '';
+    }
 
     function categoryBadge(category) {
         if (category === 'selecciones') return 'Seleccion';
@@ -91,9 +121,45 @@
         return urls;
     }
 
-    function orderJersey(jerseyName, price) {
+    function orderJersey(jerseyName, price, imageUrl) {
         const phoneNumber = '50663620357';
-        const message = encodeURIComponent(`Hola, me interesa la camiseta ${jerseyName} - Precio: ₡${price}`);
+        const size = document.querySelector('input[name="size"]:checked')?.value || '';
+        const hasNameNumber = document.getElementById('hasNameNumber')?.checked || false;
+        const playerName = (document.getElementById('playerName')?.value || '').trim();
+        const playerNumber = (document.getElementById('playerNumber')?.value || '').trim();
+        const version = document.querySelector('input[name="version"]:checked')?.value || '';
+        const selectedImage = document.getElementById('modalJerseyImage')?.src || imageUrl || '';
+        const shareableImageUrl = toShareableImageUrl(selectedImage);
+
+        if (!size) {
+            alert('Por favor selecciona una talla');
+            return;
+        }
+
+        if (!version) {
+            alert('Por favor selecciona una versión');
+            return;
+        }
+
+        if (hasNameNumber && (!playerName || !playerNumber)) {
+            alert('Por favor completa nombre y número');
+            return;
+        }
+
+        const numberAndName = hasNameNumber
+            ? `${playerNumber} - ${playerName}`
+            : 'No';
+
+        let messageText = 'Me gustaria ordenar esta camisa\n';
+        messageText += shareableImageUrl
+            ? `(${shareableImageUrl})\n`
+            : '(Imagen no disponible)\n';
+        messageText += 'One pieces of this\n';
+        messageText += `Size: ${size}\n`;
+        messageText += `Number and Name: ${numberAndName}\n`;
+        messageText += `Version: ${version}`;
+
+        const message = encodeURIComponent(messageText);
         window.open(`https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`, '_blank');
     }
 
@@ -102,27 +168,60 @@
         if (!modal) return;
 
         // Actualizar contenido del modal
-        const modalTitle = document.getElementById('jerseyModalLabel');
         const modalName = document.getElementById('modalJerseyName');
         const modalPrice = document.getElementById('modalJerseyPrice');
         const modalImage = document.getElementById('modalJerseyImage');
         const modalOrderBtn = document.getElementById('modalOrderBtn');
 
-        if (modalTitle) modalTitle.textContent = team;
         if (modalName) modalName.textContent = team;
         if (modalPrice) modalPrice.textContent = `₡${price}`;
         if (modalImage) modalImage.src = imageUrl;
+        
+        // Cargar galería de imágenes si está disponible
+        const imageGallery = document.getElementById('imageGallery');
+        if (imageGallery && window.__currentJerseyImages) {
+            imageGallery.innerHTML = '';
+            window.__currentJerseyImages.forEach(imgUrl => {
+                const thumb = document.createElement('img');
+                thumb.src = imgUrl;
+                thumb.style.cssText = 'width: 60px; height: 60px; object-fit: cover; border-radius: 4px; cursor: pointer; border: 2px solid transparent; transition: all 0.3s;';
+                thumb.onmouseover = () => { thumb.style.borderColor = '#0f4c75'; thumb.style.transform = 'scale(1.1)'; };
+                thumb.onmouseout = () => { thumb.style.borderColor = 'transparent'; thumb.style.transform = 'scale(1)'; };
+                thumb.onclick = () => {
+                    modalImage.src = imgUrl;
+                };
+                imageGallery.appendChild(thumb);
+            });
+        }
+        // Resetear formulario
+        document.querySelectorAll('input[name="size"]').forEach(r => r.checked = false);
+        document.querySelectorAll('input[name="version"]').forEach(r => r.checked = false);
+        document.getElementById('hasNameNumber').checked = false;
+        document.getElementById('playerName').value = '';
+        document.getElementById('playerNumber').value = '';
+        document.getElementById('nameNumberSection').style.display = 'none';
 
         // Manejar botón de orden en el modal
         if (modalOrderBtn) {
             modalOrderBtn.onclick = () => {
-                orderJersey(team, price);
+                orderJersey(team, price, imageUrl);
             };
         }
 
         // Abrir modal con Bootstrap
         const bsModal = new bootstrap.Modal(modal, { backdrop: true, keyboard: true });
         bsModal.show();
+    }
+
+    function initModalInteractivity() {
+        const hasNameNumberCheckbox = document.getElementById('hasNameNumber');
+        const nameNumberSection = document.getElementById('nameNumberSection');
+
+        if (hasNameNumberCheckbox) {
+            hasNameNumberCheckbox.addEventListener('change', (e) => {
+                nameNumberSection.style.display = e.target.checked ? 'block' : 'none';
+            });
+        }
     }
 
     function appendJerseyCard(grid, jersey, category) {
@@ -170,7 +269,8 @@
         if (orderBtn) {
             orderBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                orderJersey(jersey.team, jersey.price);
+                window.__currentJerseyImages = images;
+                openQuickView(jersey.team, jersey.price, mainImage);
             });
         }
 
@@ -218,18 +318,15 @@
     document.addEventListener('DOMContentLoaded', () => {
         if (window.location.pathname.includes('ligas.html') || document.getElementById('ligas')) {
             loadDynamicJerseys('ligas');
-            return;
-        }
-        if (window.location.pathname.includes('selecciones.html') || document.getElementById('selecciones')) {
+        } else if (window.location.pathname.includes('selecciones.html') || document.getElementById('selecciones')) {
             loadDynamicJerseys('selecciones');
-            return;
-        }
-        if (window.location.pathname.includes('retro.html') || document.getElementById('retro')) {
+        } else if (window.location.pathname.includes('retro.html') || document.getElementById('retro')) {
             loadDynamicJerseys('retro');
-            return;
-        }
-        if (window.location.pathname.includes('uniformes.html') || document.getElementById('uniformes')) {
+        } else if (window.location.pathname.includes('uniformes.html') || document.getElementById('uniformes')) {
             loadDynamicJerseys('uniformes');
         }
+        
+        // Inicializar interactividad del modal
+        initModalInteractivity();
     });
 })();

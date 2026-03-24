@@ -5,6 +5,36 @@ let totalSlides = 0;
 
 // Tu número de WhatsApp (cambiar por tu número real)
 const WHATSAPP_NUMBER = '50663620357'; 
+const PUBLIC_SITE_URL = 'https://www.lacamisadel10.com';
+
+function toShareableImageUrl(rawUrl) {
+    if (!rawUrl || typeof rawUrl !== 'string') return '';
+
+    try {
+        const url = new URL(rawUrl, window.location.href);
+        const pathname = url.pathname || '';
+        const imgIndex = pathname.toLowerCase().indexOf('/img/');
+
+        if (url.protocol === 'https:' || url.protocol === 'http:') {
+            const isLocalHost = url.hostname === 'localhost' || url.hostname === '127.0.0.1';
+            if (isLocalHost && imgIndex !== -1) {
+                return `${PUBLIC_SITE_URL}${pathname.slice(imgIndex)}`;
+            }
+            return url.href;
+        }
+
+        if (url.protocol === 'file:' && imgIndex !== -1) {
+            return `${PUBLIC_SITE_URL}${pathname.slice(imgIndex)}`;
+        }
+    } catch (error) {
+        if (rawUrl.startsWith('img/') || rawUrl.startsWith('/img/')) {
+            const normalized = rawUrl.startsWith('/') ? rawUrl : `/${rawUrl}`;
+            return `${PUBLIC_SITE_URL}${normalized}`;
+        }
+    }
+
+    return '';
+}
 
 // Inicialización cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {
@@ -172,20 +202,24 @@ function initOrderButtons() {
     document.addEventListener('click', function(e) {
         if (e.target.classList.contains('order-btn') || e.target.closest('.order-btn')) {
             const button = e.target.classList.contains('order-btn') ? e.target : e.target.closest('.order-btn');
+
+            // Si hay modal disponible, redirigir al flujo de configuración (evita mensaje legacy)
+            const card = button.closest('.jersey-card');
+            const quickViewBtn = card ? card.querySelector('.quick-view-btn') : null;
+            if (quickViewBtn) {
+                e.preventDefault();
+                e.stopPropagation();
+                quickViewBtn.click();
+                return;
+            }
+
+            // Fallback para páginas sin modal
             const jerseyName = button.getAttribute('data-jersey');
             const jerseyInfo = button.closest('.jersey-info');
-            const price = jerseyInfo ? jerseyInfo.querySelector('.price').textContent : '$79.99';
-            
-            // Crear mensaje para WhatsApp
+            const price = jerseyInfo ? jerseyInfo.querySelector('.price').textContent : '₡0';
             const message = `¡Hola! Estoy interesado en ordenar la camiseta de *${jerseyName}* con precio de ${price}. ¿Está disponible?`;
-            
-            // Codificar el mensaje para URL
             const encodedMessage = encodeURIComponent(message);
-            
-            // Crear URL de WhatsApp
             const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-            
-            // Abrir WhatsApp en nueva pestaña
             window.open(whatsappURL, '_blank');
         }
     });
@@ -469,7 +503,42 @@ document.addEventListener('click', function(e) {
                 
                 // Agregar nuevo evento
                 document.getElementById('modalOrderBtn').addEventListener('click', function() {
-                    const message = `¡Hola! Estoy interesado en ordenar la camiseta de *${jerseyName}* con precio de ${price}. ¿Está disponible?`;
+                    const size = document.querySelector('input[name="size"]:checked')?.value || '';
+                    const hasNameNumber = document.getElementById('hasNameNumber')?.checked || false;
+                    const playerName = (document.getElementById('playerName')?.value || '').trim();
+                    const playerNumber = (document.getElementById('playerNumber')?.value || '').trim();
+                    const version = document.querySelector('input[name="version"]:checked')?.value || '';
+                    const selectedImage = document.getElementById('modalJerseyImage')?.src || imgSrc || '';
+                    const shareableImageUrl = toShareableImageUrl(selectedImage);
+
+                    if (!size) {
+                        alert('Por favor selecciona una talla');
+                        return;
+                    }
+
+                    if (!version) {
+                        alert('Por favor selecciona una versión');
+                        return;
+                    }
+
+                    if (hasNameNumber && (!playerName || !playerNumber)) {
+                        alert('Por favor completa nombre y número');
+                        return;
+                    }
+
+                    const numberAndName = hasNameNumber
+                        ? `${playerNumber} - ${playerName}`
+                        : 'No';
+
+                    let message = 'Me gustaria ordenar esta camisa\n';
+                    message += shareableImageUrl
+                        ? `(${shareableImageUrl})\n`
+                        : '(Imagen no disponible)\n';
+                    message += 'One pieces of this\n';
+                    message += `Size: ${size}\n`;
+                    message += `Number and Name: ${numberAndName}\n`;
+                    message += `Version: ${version}`;
+
                     const encodedMessage = encodeURIComponent(message);
                     const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
                     window.open(whatsappURL, '_blank');
