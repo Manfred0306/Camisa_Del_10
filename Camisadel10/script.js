@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     initFilters();
     initMobileMenu();
-    // initOrderButtons(); // Deshabilitado: app.js maneja botones dinámicos
+    // initOrderButtons(); // Deshabilitado: app.js maneja botones dinï¿½micos
     initContactForm();
     initJerseyCarousels();
 });
@@ -197,6 +197,7 @@ function initMobileMenu() {
 }
 
 // ========== BOTONES DE ORDENAR ==========
+/* DESHABILITADO - app.js maneja completamente el flujo de pedidos
 function initOrderButtons() {
     // Usar evento de delegaciÃ³n para asegurar que funcione con todos los botones
     document.addEventListener('click', function(e) {
@@ -224,6 +225,7 @@ function initOrderButtons() {
         }
     });
 }
+*/
 
 // ========== FORMULARIO DE CONTACTO ==========
 function initContactForm() {
