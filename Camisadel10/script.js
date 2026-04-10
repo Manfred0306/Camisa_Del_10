@@ -3,8 +3,8 @@ let currentSlide = 0;
 let slides = [];
 let totalSlides = 0;
 
-// Tu número de WhatsApp (cambiar por tu número real)
-const WHATSAPP_NUMBER = '50663620357'; 
+// Tu número de WhatsApp
+const WHATSAPP_NUMBER = '50689652370'; 
 const PUBLIC_SITE_URL = 'https://www.lacamisadel10.com';
 
 function toShareableImageUrl(rawUrl) {
@@ -46,10 +46,260 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     initFilters();
     initMobileMenu();
+    initAssistant();
     // initOrderButtons(); // Deshabilitado: app.js maneja botones din�micos
     initContactForm();
     initJerseyCarousels();
 });
+
+function initAssistant() {
+    const widget = document.getElementById('assistantWidget');
+    const panel = document.getElementById('assistantPanel');
+    const messages = document.getElementById('assistantMessages');
+    const choices = document.getElementById('assistantChoices');
+
+    if (!widget || !panel || !messages || !choices) {
+        return;
+    }
+
+    const categoryMap = {
+        ligas: {
+            label: 'Ligas Europeas',
+            href: 'ligas.html',
+            intro: 'Te gustan las camisetas de clubes y competiciones. Aquí tienes la categoría de ligas para ver camisetas relacionadas.'
+        },
+        selecciones: {
+            label: 'Selecciones Nacionales',
+            href: 'selecciones.html',
+            intro: 'Prefieres camisetas de países. Esta categoría te lleva a las selecciones que tenemos disponibles.'
+        },
+        retro: {
+            label: 'Camisetas Retro',
+            href: 'retro.html',
+            intro: 'Te gustan los diseños clásicos y con historia. Esta categoría es para ti.'
+        },
+        uniformes: {
+            label: 'Uniformes',
+            href: 'uniformes.html',
+            intro: 'Buscas algo más deportivo y versátil. Aquí puedes ver uniformes relacionados.'
+        }
+    };
+
+    const recommendationPool = [
+        { name: 'Real Madrid Player', price: 21000, href: 'ligas.html', category: 'ligas' },
+        { name: 'Barcelona Retro', price: 21000, href: 'retro.html', category: 'retro' },
+        { name: 'Manchester United', price: 20500, href: 'ligas.html', category: 'ligas' },
+        { name: 'PSG Edicion Especial', price: 22000, href: 'ligas.html', category: 'ligas' },
+        { name: 'Argentina Seleccion', price: 20000, href: 'selecciones.html', category: 'selecciones' },
+        { name: 'Brasil Seleccion', price: 20000, href: 'selecciones.html', category: 'selecciones' },
+        { name: 'Juventus Player', price: 21000, href: 'ligas.html', category: 'ligas' },
+        { name: 'AC Milan Retro', price: 21000, href: 'retro.html', category: 'retro' },
+        { name: 'Uniforme Kids Portugal', price: 25000, href: 'uniformes.html', category: 'uniformes' },
+        { name: 'Uniforme Kids Barcelona', price: 25000, href: 'uniformes.html', category: 'uniformes' }
+    ];
+
+    const fallbackChoices = [
+        { label: 'Ligas Europeas', category: 'ligas' },
+        { label: 'Selecciones Nacionales', category: 'selecciones' },
+        { label: 'Camisetas Retro', category: 'retro' },
+        { label: 'Uniformes', category: 'uniformes' },
+        { label: 'No se, recomiendame', category: 'recomendar' },
+        { label: 'Escribir por WhatsApp', category: 'whatsapp' }
+    ];
+
+    function formatCRC(value) {
+        return `₡${Number(value).toLocaleString('es-CR')}`;
+    }
+
+    function pickRandomRecommendations(minPrice, amount) {
+        const candidates = recommendationPool.filter(item => Number(item.price) > minPrice);
+        const shuffled = [...candidates].sort(() => Math.random() - 0.5);
+        return shuffled.slice(0, amount);
+    }
+
+    function scrollMessagesToBottom() {
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function openAssistant() {
+        panel.hidden = false;
+        widget.classList.add('open');
+        scrollMessagesToBottom();
+    }
+
+    function closeAssistant() {
+        panel.hidden = true;
+        widget.classList.remove('open');
+    }
+
+    function addMessage(text, type) {
+        const message = document.createElement('div');
+        message.className = `assistant-message ${type}`;
+        message.textContent = text;
+        messages.insertBefore(message, choices);
+        scrollMessagesToBottom();
+    }
+
+    function renderChoices(list) {
+        choices.innerHTML = '';
+        list.forEach(item => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'assistant-chip';
+            button.textContent = item.label;
+            button.dataset.category = item.category;
+            choices.appendChild(button);
+        });
+        scrollMessagesToBottom();
+    }
+
+    function showFallbackQuestion() {
+        addMessage('Perfecto. ¿Qué te gusta más?', 'bot');
+        renderChoices([
+            { label: 'Camisetas de clubes', category: 'ligas' },
+            { label: 'Camisetas de países', category: 'selecciones' },
+            { label: 'Diseños clásicos', category: 'retro' },
+            { label: 'Modelos deportivos', category: 'uniformes' }
+        ]);
+    }
+
+    function showCategory(category) {
+        const data = categoryMap[category];
+        if (!data) {
+            showFallbackQuestion();
+            return;
+        }
+
+        addMessage(`Elegiste ${data.label}. ${data.intro}`, 'bot');
+        choices.innerHTML = '';
+
+        const actionGroup = document.createElement('div');
+        actionGroup.className = 'assistant-result-group';
+
+        const goButton = document.createElement('button');
+        goButton.type = 'button';
+        goButton.className = 'assistant-result-btn';
+        goButton.textContent = `Ver ${data.label}`;
+        goButton.addEventListener('click', function() {
+            window.location.href = data.href;
+        });
+
+        const restartButton = document.createElement('button');
+        restartButton.type = 'button';
+        restartButton.className = 'assistant-result-btn';
+        restartButton.textContent = 'Elegir otra categoría';
+        restartButton.addEventListener('click', function() {
+            addMessage('Claro, dime cuál prefieres ahora.', 'bot');
+            renderChoices(fallbackChoices);
+        });
+
+        const whatsappButton = document.createElement('button');
+        whatsappButton.type = 'button';
+        whatsappButton.className = 'assistant-result-btn';
+        whatsappButton.textContent = 'Enviar por WhatsApp';
+        whatsappButton.addEventListener('click', function() {
+            const whatsappMessage = `Hola, necesito ayuda para elegir camisetas de ${data.label.toLowerCase()} en La Camisa del 10.`;
+            const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
+            window.open(whatsappURL, '_blank');
+        });
+
+        actionGroup.appendChild(goButton);
+        actionGroup.appendChild(whatsappButton);
+        actionGroup.appendChild(restartButton);
+        choices.appendChild(actionGroup);
+        scrollMessagesToBottom();
+    }
+
+    function showRandomRecommendations() {
+        const recommendations = pickRandomRecommendations(19000, 5);
+
+        addMessage('Perfecto. Te recomiendo estas 5 camisetas aleatorias de mas de ₡19.000:', 'bot');
+        choices.innerHTML = '';
+
+        const actionGroup = document.createElement('div');
+        actionGroup.className = 'assistant-result-group';
+
+        recommendations.forEach(item => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'assistant-result-btn';
+            button.textContent = `${item.name} - ${formatCRC(item.price)}`;
+            button.addEventListener('click', function() {
+                window.location.href = item.href;
+            });
+            actionGroup.appendChild(button);
+        });
+
+        const whatsappAllButton = document.createElement('button');
+        whatsappAllButton.type = 'button';
+        whatsappAllButton.className = 'assistant-result-btn';
+        whatsappAllButton.textContent = 'Enviar estas recomendaciones por WhatsApp';
+        whatsappAllButton.addEventListener('click', function() {
+            const summary = recommendations
+                .map(item => `- ${item.name} (${formatCRC(item.price)})`)
+                .join('\n');
+            const whatsappMessage = `Hola, quiero informacion de estas camisetas recomendadas:\n${summary}`;
+            const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
+            window.open(whatsappURL, '_blank');
+        });
+
+        const restartButton = document.createElement('button');
+        restartButton.type = 'button';
+        restartButton.className = 'assistant-result-btn';
+        restartButton.textContent = 'Quiero otras 5 recomendaciones';
+        restartButton.addEventListener('click', function() {
+            showRandomRecommendations();
+        });
+
+        actionGroup.appendChild(whatsappAllButton);
+        actionGroup.appendChild(restartButton);
+        choices.appendChild(actionGroup);
+        scrollMessagesToBottom();
+    }
+
+    document.querySelectorAll('[data-assistant-open]').forEach(button => {
+        button.addEventListener('click', openAssistant);
+    });
+
+    const closeButton = document.querySelector('[data-assistant-close]');
+    if (closeButton) {
+        closeButton.addEventListener('click', closeAssistant);
+    }
+
+    choices.addEventListener('click', function(event) {
+        const button = event.target.closest('[data-category]');
+        if (!button) {
+            return;
+        }
+
+        const category = button.dataset.category;
+        const label = button.textContent.trim();
+
+        addMessage(label, 'user');
+
+        if (category === 'recomendar') {
+            showRandomRecommendations();
+            return;
+        }
+
+        if (category === 'whatsapp') {
+            addMessage('Perfecto, te abro WhatsApp para que te ayudemos con tu compra.', 'bot');
+            const whatsappMessage = 'Hola, quiero ayuda para elegir camisetas de futbol de muy buena calidad en La Camisa del 10.';
+            const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
+            window.open(whatsappURL, '_blank');
+            renderChoices(fallbackChoices);
+            return;
+        }
+
+        showCategory(category);
+    });
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeAssistant();
+        }
+    });
+}
 
 // ========== CARRUSEL ==========
 function initCarousel() {

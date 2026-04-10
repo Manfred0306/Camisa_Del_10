@@ -5,13 +5,13 @@
   RewriteEngine On
   RewriteBase /
 
-  # Redirigir www a non-www (o viceversa si lo prefieres)
-  RewriteCond %{HTTP_HOST} ^www\.lacamisadel10\.com$ [NC]
+  # Forzar una sola version del sitio: HTTPS + www
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} !^www\.lacamisadel10\.com$ [NC]
   RewriteRule ^(.*)$ https://www.lacamisadel10.com/$1 [R=301,L]
 
-  # Forzar HTTPS
-  RewriteCond %{HTTPS} off
-  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # Canonicalizar home para evitar duplicados con /index.html
+  RewriteRule ^index\.html$ https://www.lacamisadel10.com/ [R=301,L]
 
   # Eliminar .html en URLs
   RewriteCond %{REQUEST_FILENAME} !-f

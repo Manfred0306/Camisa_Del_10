@@ -42,6 +42,7 @@ header {
     position: fixed;
     width: 100%;
     top: 0;
+    height: 72px;
     z-index: 1000;
     background: rgba(243, 243, 239, 0.94);
     border-bottom: 1px solid var(--line);
@@ -53,6 +54,7 @@ header {
 }
 
 .navbar .container {
+    height: 72px;
     min-height: 72px;
     display: flex;
     justify-content: space-between;
@@ -66,6 +68,7 @@ header {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin: 0;
+    white-space: nowrap;
 }
 
 .nav-menu {
@@ -700,6 +703,182 @@ header {
     color: var(--muted);
 }
 
+/* Virtual assistant */
+.assistant-promo {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding: 18px 20px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+}
+
+.assistant-launch-btn,
+.assistant-fab {
+    border: 1px solid var(--ink);
+    background: var(--ink);
+    color: #f5f5f1;
+    font-family: inherit;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+}
+
+.assistant-launch-btn {
+    padding: 0.9rem 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.assistant-widget {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 1300;
+}
+
+.assistant-fab {
+    width: 58px;
+    height: 58px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.assistant-fab i,
+.assistant-launch-btn i {
+    font-size: 1.05rem;
+}
+
+.assistant-panel {
+    position: absolute;
+    right: 0;
+    bottom: 72px;
+    width: min(360px, calc(100vw - 36px));
+    border: 1px solid var(--line-strong);
+    background: #f7f7f4;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+}
+
+.assistant-panel[hidden] {
+    display: none;
+}
+
+.assistant-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+}
+
+.assistant-eyebrow {
+    margin: 0 0 4px;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.assistant-header h3 {
+    margin: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem;
+}
+
+.assistant-close {
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+}
+
+.assistant-body {
+    padding: 14px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 420px;
+    overflow: auto;
+}
+
+.assistant-message {
+    padding: 11px 12px;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink);
+    max-width: 100%;
+}
+
+.assistant-message.bot {
+    align-self: flex-start;
+}
+
+.assistant-message.user {
+    align-self: flex-end;
+    background: #f0f0eb;
+}
+
+.assistant-choices {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+}
+
+.assistant-chip,
+.assistant-result-btn {
+    border: 1px solid var(--ink);
+    background: transparent;
+    color: var(--ink);
+    padding: 0.72rem 0.8rem;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+}
+
+.assistant-chip:hover,
+.assistant-result-btn:hover,
+.assistant-launch-btn:hover,
+.assistant-fab:hover {
+    background: var(--ink);
+    color: #f5f5f1;
+}
+
+.assistant-result-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.assistant-footer {
+    padding: 0 16px 16px;
+}
+
+.assistant-action-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+    font-weight: 600;
+}
+
 /* Modal overrides for Bootstrap */
 .modal-content {
     border: 1px solid var(--line-strong);
@@ -888,6 +1067,7 @@ header {
     .categories-section {
         width: 50%;
         float: left;
+        margin-top: 72px;
         padding: 0;
         border-bottom: none;
         display: flex;
@@ -941,6 +1121,24 @@ header {
 }
 
 @media (max-width: 968px) {
+    .navbar .container {
+        gap: 10px;
+    }
+
+    .logo {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .logo h1 {
+        font-size: 0.86rem;
+        letter-spacing: 0.04em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 100%;
+    }
+
     .hero {
         width: 100% !important;
         float: none !important;
@@ -978,6 +1176,8 @@ header {
 
     .hamburger {
         display: flex;
+        flex-shrink: 0;
+        padding: 8px;
     }
 
     .carousel {
@@ -1014,7 +1214,8 @@ header {
     }
 
     .logo h1 {
-        font-size: 1rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.03em;
     }
 
     .carousel {
@@ -1067,5 +1268,20 @@ header {
 
     .modal-body {
         padding: 0.9rem;
+    }
+
+    .assistant-promo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .assistant-widget {
+        right: 14px;
+        bottom: 14px;
+    }
+
+    .assistant-panel {
+        width: min(340px, calc(100vw - 28px));
+        bottom: 68px;
     }
 }
